@@ -8,6 +8,6 @@
   </header>
 
   <main>
-      <MessageComponent msg="The world says hello" />
+      <MessageComponent msg="Nichola is awesome" />
   </main>
 </template>
