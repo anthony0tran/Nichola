@@ -1,23 +1,28 @@
 <script setup lang="ts">
-    import MessageComponent from './components/MessageComponent.vue'
-    import { ref } from 'vue'
-    let myMessage = ref('Hi!');
-    let hiMessage = "Hi!";
-    let nicholaMessage = "Nichola"
+    import DialogueComponent from './components/DialogueComponent.vue'
+    import TextOutputComponent from './components/TextOutputComponent.vue';
 
-    const changeMessage = () => {
-        if (myMessage.value == hiMessage) {
-            myMessage.value = nicholaMessage;
-            return;
-        }
-
-        myMessage.value = hiMessage
-    };
 </script>
 
 <template>
     <main>
-        <header></header>
-        <MessageComponent @click="changeMessage" :msg="myMessage" />
+        <div class="flex-container">
+            <DialogueComponent />
+            <TextOutputComponent />   
+        </div>
+             
     </main>
 </template>
+
+<style scoped>
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    bottom: 20px;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px 0px 0px 20px;
+    min-width: 70%;
+}
+</style>
