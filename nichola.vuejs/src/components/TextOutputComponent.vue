@@ -8,8 +8,7 @@
 
 <style scoped>
 #textOutputContainer {
-    border-color: black;
-    border-style: solid;
+    background-color: rgba(180, 122, 152, 0.8);
     border-radius: 8px;
     position: relative;
     font-size: 25px;
