@@ -1,19 +1,23 @@
 <script setup lang="ts">
-    import { ref } from 'vue';
-    import DialogueOptionComponent from './DialogueOptionComponent.vue';
-    
-    const items = ref([
-        { message: 'Foo' }, 
-        { message: 'Bar' },
-        { message: 'Anthony' },
-        { message: 'Nichola' }
-    ])
+import { ref } from 'vue';
+import DialogueOptionComponent from './DialogueOptionComponent.vue';
+import { DialogueGraphConstructor } from '@/helpers/DialogueGraphConstructor';
+
+const dialogues = new DialogueGraphConstructor();
+dialogues.constructDialogue();
+
+let dialogue = ref(dialogues.dialogueGraph.getCurrentNode?.message);
+let options = ref(dialogues.dialogueGraph.getCurrentNode?.getOptions());
 </script>
 
 <template>
-    <main id="dialogueContainer">
-        <DialogueOptionComponent v-for="item in items" :optionPrompt="item.message" />
-    </main>
+    <div class="flex-container">
+        <main id="dialogueContainer">
+            <DialogueOptionComponent v-for="option in options" :optionPrompt="option" />
+            <div id="textOutputContainer">{{ dialogue }}
+            </div>
+        </main>
+    </div>
 </template>
 
 <style scoped>
@@ -28,5 +32,27 @@
     width: 100%;
     box-sizing: border-box;
     padding: 10px 15px 10px 15px;
+}
+
+#textOutputContainer {
+    background-color: rgba(180, 122, 152, 0.8);
+    border-radius: 8px;
+    position: relative;
+    font-size: 25px;
+    margin-top: 80px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px 0px 10px 15px;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    bottom: 20px;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px 0px 0px 20px;
+    min-width: 70%;
 }
 </style>

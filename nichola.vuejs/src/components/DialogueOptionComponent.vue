@@ -5,9 +5,9 @@ defineProps<{
 </script>
 
 <template>
-    <div class="dialogueOption">
-        {{ optionPrompt }}
-    </div>
+  <div class="dialogueOption">
+    {{ optionPrompt }}
+  </div>
 </template>
 
 <style scoped>
@@ -20,7 +20,7 @@ defineProps<{
   width: 85%;
 }
 
-.dialogueOption:hover{
+.dialogueOption:hover {
   background-color: rgba(202, 161, 182, 0.6);
   cursor: pointer;
 }
