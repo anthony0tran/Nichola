@@ -5,7 +5,7 @@
     "src/**/*", 
     "src/**/*.vue",
     "src/**/*.ts",
-    "src/helpers/DialogueHelpers.ts"],
+    "src/helpers/DialogueGraphConstructor.ts"],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     "composite": true,

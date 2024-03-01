@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import DialogueOptionComponent from './DialogueOptionComponent.vue';
-import { DialogueHelpers } from '@/helpers/DialogueHelpers';
+import { DialogueGraphConstructor } from '@/helpers/DialogueGraphConstructor';
 
-const dialogues = new DialogueHelpers();
-// dialogues.constructDialogue();
+const dialogues = new DialogueGraphConstructor();
+dialogues.constructDialogue();
+
+let dialogue = ref(dialogues.dialogueGraph.getCurrentNode?.message);
 
 const items = ref([
     { message: 'Foo' },
@@ -18,12 +20,7 @@ const items = ref([
     <div class="flex-container">
         <main id="dialogueContainer">
             <DialogueOptionComponent v-for="item in items" :optionPrompt="item.message" />
-            <div id="textOutputContainer">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but
-                also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
-                with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            <div id="textOutputContainer">{{ dialogue }}
             </div>
         </main>
     </div>
@@ -64,4 +61,4 @@ const items = ref([
     padding: 20px 0px 0px 20px;
     min-width: 70%;
 }
-</style>
+</style>@/helpers/DialogueGraphConstructor

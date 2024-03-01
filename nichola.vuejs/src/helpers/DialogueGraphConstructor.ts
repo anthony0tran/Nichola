@@ -1,6 +1,6 @@
 import {DialogueGraph, DialogueType} from '@/models/DialogueGraph'
 
-export class DialogueHelpers {
+export class DialogueGraphConstructor {
     private _dialogueGraph = new DialogueGraph();
 
     get dialogueGraph(): DialogueGraph {
@@ -18,5 +18,7 @@ export class DialogueHelpers {
         this.dialogueGraph.addEdge(this.dialogueGraph.nodes[1], this.dialogueGraph.nodes[2]);
         this.dialogueGraph.addEdge(this.dialogueGraph.nodes[1], this.dialogueGraph.nodes[3]);
         this.dialogueGraph.addEdge(this.dialogueGraph.nodes[1], this.dialogueGraph.nodes[4]);
+
+        this.dialogueGraph.setCurrentNode(this.dialogueGraph.nodes[0]);
     }
 }

@@ -16,9 +16,14 @@ class DialogueNode {
 
 export class DialogueGraph {
     nodes: DialogueNode[];
+    currentNode: DialogueNode | null = null;
 
     constructor() {
         this.nodes = [];
+    }
+
+    get getCurrentNode(): DialogueNode | null {
+        return this.currentNode
     }
 
     addDialogueNode(message: string, type: DialogueType = DialogueType.Message) {
@@ -28,6 +33,10 @@ export class DialogueGraph {
 
     addEdge(source: DialogueNode, destination: DialogueNode, weight: number = 0) {
         source.addNeighbor(destination, weight);
+    }
+
+    setCurrentNode(node: DialogueNode) {
+        this.currentNode = node;
     }
 }
 
