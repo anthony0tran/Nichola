@@ -1,13 +1,13 @@
 <script setup lang="ts">
-    import { ref } from 'vue';
-    import DialogueOptionComponent from './DialogueOptionComponent.vue';
-    
-    const items = ref([
-        { message: 'Foo' }, 
-        { message: 'Bar' },
-        { message: 'Anthony' },
-        { message: 'Nichola' }
-    ])
+import { ref } from 'vue';
+import DialogueOptionComponent from './DialogueOptionComponent.vue';
+
+const items = ref([
+    { message: 'Foo' },
+    { message: 'Bar' },
+    { message: 'Anthony' },
+    { message: 'Nichola' }
+])
 </script>
 
 <template>

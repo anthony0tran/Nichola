@@ -1,6 +1,6 @@
 <script setup lang="ts">
-    import DialogueComponent from './components/DialogueComponent.vue'
-    import TextOutputComponent from './components/TextOutputComponent.vue';
+import DialogueComponent from './components/DialogueComponent.vue'
+import TextOutputComponent from './components/TextOutputComponent.vue';
 
 </script>
 
@@ -8,9 +8,9 @@
     <main>
         <div class="flex-container">
             <DialogueComponent />
-            <TextOutputComponent />   
+            <TextOutputComponent />
         </div>
-             
+
     </main>
 </template>
 
