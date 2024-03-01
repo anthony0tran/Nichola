@@ -7,19 +7,13 @@ const dialogues = new DialogueGraphConstructor();
 dialogues.constructDialogue();
 
 let dialogue = ref(dialogues.dialogueGraph.getCurrentNode?.message);
-
-const items = ref([
-    { message: 'Foo' },
-    { message: 'Bar' },
-    { message: 'Anthony' },
-    { message: 'Nichola' }
-])
+let options = ref(dialogues.dialogueGraph.getCurrentNode?.getOptions());
 </script>
 
 <template>
     <div class="flex-container">
         <main id="dialogueContainer">
-            <DialogueOptionComponent v-for="item in items" :optionPrompt="item.message" />
+            <DialogueOptionComponent v-for="option in options" :optionPrompt="option" />
             <div id="textOutputContainer">{{ dialogue }}
             </div>
         </main>
@@ -61,4 +55,4 @@ const items = ref([
     padding: 20px 0px 0px 20px;
     min-width: 70%;
 }
-</style>@/helpers/DialogueGraphConstructor
+</style>

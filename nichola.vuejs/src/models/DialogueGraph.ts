@@ -1,4 +1,4 @@
-class DialogueNode {
+export class DialogueNode {
     type: DialogueType;
     message: string;
     neighbors: { node: DialogueNode; weight: number }[];
@@ -11,6 +11,12 @@ class DialogueNode {
 
     addNeighbor(node: DialogueNode, weight: number) {
         this.neighbors.push({ node, weight });
+    }
+
+    getOptions() {
+        return this.neighbors
+            .filter(n => n.node.type == DialogueType.Option)
+            .map(n => n.node.message);
     }
 }
 

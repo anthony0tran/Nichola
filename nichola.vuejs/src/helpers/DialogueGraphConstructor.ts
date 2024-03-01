@@ -19,6 +19,6 @@ export class DialogueGraphConstructor {
         this.dialogueGraph.addEdge(this.dialogueGraph.nodes[1], this.dialogueGraph.nodes[3]);
         this.dialogueGraph.addEdge(this.dialogueGraph.nodes[1], this.dialogueGraph.nodes[4]);
 
-        this.dialogueGraph.setCurrentNode(this.dialogueGraph.nodes[0]);
+        this.dialogueGraph.setCurrentNode(this.dialogueGraph.nodes[1]);
     }
 }
