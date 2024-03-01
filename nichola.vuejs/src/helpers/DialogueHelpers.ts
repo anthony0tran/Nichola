@@ -1,15 +1,20 @@
-class DialogueHelpers {
-    static constructDialogue() {
-        var dialogueGraph = new DialogueGraph();
-        dialogueGraph.addDialogueNode('Hi! How can I help you?');
-        dialogueGraph.addDialogueNode('Where can I find...');
-        dialogueGraph.addDialogueNode('The manager', DialogueType.Option);
-        dialogueGraph.addDialogueNode('The shoes', DialogueType.Option);
-        dialogueGraph.addDialogueNode('The returns', DialogueType.Option);
+export class DialogueHelpers {
+    private _dialogueGraph = new DialogueGraph();
 
-        dialogueGraph.addEdge(dialogueGraph.nodes[0], dialogueGraph.nodes[1]);
-        dialogueGraph.addEdge(dialogueGraph.nodes[1], dialogueGraph.nodes[2]);
-        dialogueGraph.addEdge(dialogueGraph.nodes[1], dialogueGraph.nodes[3]);
-        dialogueGraph.addEdge(dialogueGraph.nodes[1], dialogueGraph.nodes[4]);
+    get dialogueGraph(): DialogueGraph {
+        return this._dialogueGraph;
+    }
+    
+    constructDialogue() {
+        this.dialogueGraph.addDialogueNode('Hi! How can I help you?');
+        this.dialogueGraph.addDialogueNode('Where can I find...');
+        this.dialogueGraph.addDialogueNode('The manager', DialogueType.Option);
+        this.dialogueGraph.addDialogueNode('The shoes', DialogueType.Option);
+        this.dialogueGraph.addDialogueNode('The returns', DialogueType.Option);
+
+        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[0], this.dialogueGraph.nodes[1]);
+        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[1], this.dialogueGraph.nodes[2]);
+        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[1], this.dialogueGraph.nodes[3]);
+        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[1], this.dialogueGraph.nodes[4]);
     }
 }
