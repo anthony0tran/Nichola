@@ -14,7 +14,7 @@ class DialogueNode {
     }
 }
 
-class DialogueGraph {
+export class DialogueGraph {
     nodes: DialogueNode[];
 
     constructor() {
@@ -31,7 +31,7 @@ class DialogueGraph {
     }
 }
 
-enum DialogueType {
+export enum DialogueType {
     Message,
     Option
 }

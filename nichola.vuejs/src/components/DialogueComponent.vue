@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import DialogueOptionComponent from './DialogueOptionComponent.vue';
 import { DialogueHelpers } from '@/helpers/DialogueHelpers';
 
-// const dialogues = new DialogueHelpers();
+const dialogues = new DialogueHelpers();
 // dialogues.constructDialogue();
 
 const items = ref([

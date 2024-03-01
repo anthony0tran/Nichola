@@ -1,3 +1,5 @@
+import {DialogueGraph, DialogueType} from '@/models/DialogueGraph'
+
 export class DialogueHelpers {
     private _dialogueGraph = new DialogueGraph();
 
