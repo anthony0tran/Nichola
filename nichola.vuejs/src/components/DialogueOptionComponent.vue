@@ -1,12 +1,13 @@
 <script setup lang="ts">
+import {DialogueNode} from '@/models/DialogueGraph'
 defineProps<{
-  optionPrompt: string
+  optionPrompt: DialogueNode
 }>()
 </script>
 
 <template>
   <div class="dialogueOption">
-    {{ optionPrompt }}
+    {{ optionPrompt.message }}
   </div>
 </template>
 

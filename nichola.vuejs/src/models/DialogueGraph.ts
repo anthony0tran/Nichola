@@ -13,10 +13,17 @@ export class DialogueNode {
         this.neighbors.push({ node, weight });
     }
 
-    getOptions() {
+    getNextDialogue(): DialogueNode | null {
+        var result = this.neighbors
+            .find(n => n.node.type == DialogueType.Message);
+
+        return result ? result.node : null;
+    }
+
+    getOptions(): DialogueNode[] {
         return this.neighbors
             .filter(n => n.node.type == DialogueType.Option)
-            .map(n => n.node.message);
+            .map(n => n.node);
     }
 }
 
