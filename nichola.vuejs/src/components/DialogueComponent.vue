@@ -1,17 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import DialogueOptionComponent from './DialogueOptionComponent.vue';
 import { DialogueGraphConstructor } from '@/helpers/DialogueGraphConstructor';
-import {DialogueNode} from '@/models/DialogueGraph'
+import { DialogueNode } from '@/models/DialogueGraph'
 
 const dialogues = new DialogueGraphConstructor();
 dialogues.constructDialogue();
 
 let dialogue = ref(dialogues.dialogueGraph.getCurrentNode);
 let options = ref(dialogues.dialogueGraph.getCurrentNode?.getOptions());
+let hasNextNode = computed(() => dialogue.value?.getNextDialogue() != null);
 
 function continueDialogue(node: DialogueNode | null) {
-    if(node == null){
+    if (node == null) {
         return;
     }
 
@@ -19,6 +20,7 @@ function continueDialogue(node: DialogueNode | null) {
     if (nextDialogue != null) {
         dialogue.value = nextDialogue;
         options.value = nextDialogue.getOptions()
+        hasNextNode = computed(() => nextDialogue!.getNextDialogue() != null);
     }
 }
 
@@ -27,8 +29,9 @@ function continueDialogue(node: DialogueNode | null) {
 <template>
     <div class="flex-container">
         <main id="dialogueContainer">
-            <DialogueOptionComponent v-for="option in options" :optionPrompt="option" @click="continueDialogue(option)"/>
-            <div id="textOutputContainer" @click="continueDialogue(dialogue)">
+            <DialogueOptionComponent v-for="option in options" :optionPrompt="option" @click="continueDialogue(option)" />
+            <div id="textOutputContainer" @click="continueDialogue(dialogue)"
+                :class="{ 'textOutputContainer-hover': hasNextNode }">
                 {{ dialogue?.message }}
             </div>
         </main>
@@ -60,8 +63,8 @@ function continueDialogue(node: DialogueNode | null) {
     padding: 5px 0px 10px 15px;
 }
 
-#textOutputContainer:hover {
-    background-color: rgba(202, 161, 182, 0.6);
+.textOutputContainer-hover:hover {
+    background-color: rgba(202, 161, 182, 0.6) !important;
     cursor: pointer;
 }
 
