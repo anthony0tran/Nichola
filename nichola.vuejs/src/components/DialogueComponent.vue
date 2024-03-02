@@ -9,7 +9,24 @@ dialogues.constructDialogue();
 
 let dialogue = ref(dialogues.dialogueGraph.getCurrentNode);
 let options = ref(dialogues.dialogueGraph.getCurrentNode?.getOptions());
-let hasNextNode = computed(() => dialogue.value?.getNextDialogue() != null);
+let textOutPutShouldBeClickable = computed(() => determineTextOutPutClickable(dialogue.value));
+
+function determineTextOutPutClickable(node: DialogueNode | null) {
+    if (node == null) {
+        return;
+    }
+
+    let nextDialogue = node.getNextDialogue();
+    if (nextDialogue == null) {
+        return false;
+    }
+
+    if (options.value != undefined && options.value.length > 0) {
+        return false;
+    }
+
+    return true;
+}
 
 function continueDialogue(node: DialogueNode | null) {
     if (node == null) {
@@ -20,7 +37,7 @@ function continueDialogue(node: DialogueNode | null) {
     if (nextDialogue != null) {
         dialogue.value = nextDialogue;
         options.value = nextDialogue.getOptions()
-        hasNextNode = computed(() => nextDialogue!.getNextDialogue() != null);
+        textOutPutShouldBeClickable = computed(() => nextDialogue!.getNextDialogue() != null);
     }
 }
 
@@ -31,7 +48,7 @@ function continueDialogue(node: DialogueNode | null) {
         <main id="dialogueContainer">
             <DialogueOptionComponent v-for="option in options" :optionPrompt="option" @click="continueDialogue(option)" />
             <div id="textOutputContainer" @click="continueDialogue(dialogue)"
-                :class="{ 'textOutputContainer-hover': hasNextNode }">
+                :class="{ 'textOutputContainer-hover': textOutPutShouldBeClickable }">
                 {{ dialogue?.message }}
             </div>
         </main>
