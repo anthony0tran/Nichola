@@ -13,6 +13,13 @@ export class DialogueNode {
         this.neighbors.push({ node, weight });
     }
 
+    getNextDialogue(): DialogueNode | null {
+        var result = this.neighbors
+            .find(n => n.node.type == DialogueType.Message);
+
+        return result ? result.node : null;
+    }
+
     getOptions() {
         return this.neighbors
             .filter(n => n.node.type == DialogueType.Option)

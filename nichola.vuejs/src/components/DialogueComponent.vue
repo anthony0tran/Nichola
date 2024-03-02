@@ -6,15 +6,25 @@ import { DialogueGraphConstructor } from '@/helpers/DialogueGraphConstructor';
 const dialogues = new DialogueGraphConstructor();
 dialogues.constructDialogue();
 
-let dialogue = ref(dialogues.dialogueGraph.getCurrentNode?.message);
+let dialogue = ref(dialogues.dialogueGraph.getCurrentNode);
 let options = ref(dialogues.dialogueGraph.getCurrentNode?.getOptions());
+
+function continueDialogue() {
+    let nextDialogue = dialogue.value?.getNextDialogue();
+    if (nextDialogue != null) {
+        dialogue.value = nextDialogue;
+        options.value = nextDialogue.getOptions()
+    }
+}
+
 </script>
 
 <template>
     <div class="flex-container">
         <main id="dialogueContainer">
             <DialogueOptionComponent v-for="option in options" :optionPrompt="option" />
-            <div id="textOutputContainer">{{ dialogue }}
+            <div id="textOutputContainer" @click="continueDialogue">
+                {{ dialogue?.message }}
             </div>
         </main>
     </div>
@@ -43,6 +53,11 @@ let options = ref(dialogues.dialogueGraph.getCurrentNode?.getOptions());
     width: 100%;
     box-sizing: border-box;
     padding: 5px 0px 10px 15px;
+}
+
+#textOutputContainer:hover {
+    background-color: rgba(202, 161, 182, 0.6);
+    cursor: pointer;
 }
 
 .flex-container {
