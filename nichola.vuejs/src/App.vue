@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import DialogueComponent from './components/DialogueComponent.vue'
-import TextOutputComponent from './components/TextOutputComponent.vue';
+import StatsComponent from './components/StatsComponent.vue';
 
 </script>
 
 <template>
     <main>
+        <StatsComponent />
         <DialogueComponent />
     </main>
 </template>
