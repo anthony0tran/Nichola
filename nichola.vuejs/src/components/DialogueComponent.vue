@@ -9,9 +9,9 @@ dialogues.constructDialogue();
 
 let dialogue = ref(dialogues.dialogueGraph.getCurrentNode);
 let options = ref(dialogues.dialogueGraph.getCurrentNode?.getOptions());
-let textOutPutShouldBeClickable = computed(() => determinetextOutPutClickable(dialogue.value));
+let textOutPutShouldBeClickable = computed(() => determineTextOutPutClickable(dialogue.value));
 
-function determinetextOutPutClickable(node: DialogueNode | null) {
+function determineTextOutPutClickable(node: DialogueNode | null) {
     if (node == null) {
         return;
     }
