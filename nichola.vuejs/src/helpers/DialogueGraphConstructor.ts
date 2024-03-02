@@ -13,11 +13,16 @@ export class DialogueGraphConstructor {
         this.dialogueGraph.addDialogueNode('The manager', DialogueType.Option);
         this.dialogueGraph.addDialogueNode('The shoes', DialogueType.Option);
         this.dialogueGraph.addDialogueNode('The returns', DialogueType.Option);
+        this.dialogueGraph.addDialogueNode('Please follow me');
+        this.dialogueGraph.addDialogueNode('OK Karen');
 
         this.dialogueGraph.addEdge(this.dialogueGraph.nodes[0], this.dialogueGraph.nodes[1]);
         this.dialogueGraph.addEdge(this.dialogueGraph.nodes[1], this.dialogueGraph.nodes[2]);
         this.dialogueGraph.addEdge(this.dialogueGraph.nodes[1], this.dialogueGraph.nodes[3]);
         this.dialogueGraph.addEdge(this.dialogueGraph.nodes[1], this.dialogueGraph.nodes[4]);
+        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[2], this.dialogueGraph.nodes[6]);
+        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[3], this.dialogueGraph.nodes[5]);
+        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[4], this.dialogueGraph.nodes[5]);
 
         this.dialogueGraph.setCurrentNode(this.dialogueGraph.nodes[0]);
     }

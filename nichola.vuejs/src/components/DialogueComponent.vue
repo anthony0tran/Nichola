@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import DialogueOptionComponent from './DialogueOptionComponent.vue';
 import { DialogueGraphConstructor } from '@/helpers/DialogueGraphConstructor';
+import {DialogueNode} from '@/models/DialogueGraph'
 
 const dialogues = new DialogueGraphConstructor();
 dialogues.constructDialogue();
@@ -9,8 +10,12 @@ dialogues.constructDialogue();
 let dialogue = ref(dialogues.dialogueGraph.getCurrentNode);
 let options = ref(dialogues.dialogueGraph.getCurrentNode?.getOptions());
 
-function continueDialogue() {
-    let nextDialogue = dialogue.value?.getNextDialogue();
+function continueDialogue(node: DialogueNode | null) {
+    if(node == null){
+        return;
+    }
+
+    let nextDialogue = node.getNextDialogue();
     if (nextDialogue != null) {
         dialogue.value = nextDialogue;
         options.value = nextDialogue.getOptions()
@@ -22,8 +27,8 @@ function continueDialogue() {
 <template>
     <div class="flex-container">
         <main id="dialogueContainer">
-            <DialogueOptionComponent v-for="option in options" :optionPrompt="option" />
-            <div id="textOutputContainer" @click="continueDialogue">
+            <DialogueOptionComponent v-for="option in options" :optionPrompt="option" @click="continueDialogue(option)"/>
+            <div id="textOutputContainer" @click="continueDialogue(dialogue)">
                 {{ dialogue?.message }}
             </div>
         </main>

@@ -20,10 +20,10 @@ export class DialogueNode {
         return result ? result.node : null;
     }
 
-    getOptions() {
+    getOptions(): DialogueNode[] {
         return this.neighbors
             .filter(n => n.node.type == DialogueType.Option)
-            .map(n => n.node.message);
+            .map(n => n.node);
     }
 }
 
