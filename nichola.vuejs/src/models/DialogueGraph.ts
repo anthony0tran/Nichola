@@ -1,7 +1,10 @@
 export class DialogueNode {
     type: DialogueType;
     message: string;
-    neighbors: { node: DialogueNode; weight: number }[];
+    neighbors: {
+        node: DialogueNode;
+        stats: EdgeStatistics
+    }[];
 
     constructor(message: string, type: DialogueType) {
         this.type = type;
@@ -9,15 +12,15 @@ export class DialogueNode {
         this.neighbors = [];
     }
 
-    addNeighbor(node: DialogueNode, weight: number) {
-        this.neighbors.push({ node, weight });
+    addNeighbor(node: DialogueNode, stats: EdgeStatistics) {
+        this.neighbors.push({ node, stats });
     }
 
-    getNextDialogue(): DialogueNode | null {
+    getNextDialogue(): {node: DialogueNode, stats: EdgeStatistics} | null {
         var result = this.neighbors
             .find(n => n.node.type == DialogueType.Message);
 
-        return result ? result.node : null;
+        return result ? result : null;
     }
 
     getOptions(): DialogueNode[] {
@@ -44,8 +47,8 @@ export class DialogueGraph {
         this.nodes.push(node);
     }
 
-    addEdge(source: DialogueNode, destination: DialogueNode, weight: number = 1) {
-        source.addNeighbor(destination, weight);
+    addEdge(source: DialogueNode, destination: DialogueNode, stats: EdgeStatistics) {
+        source.addNeighbor(destination, stats);
     }
 
     setCurrentNode(node: DialogueNode) {
@@ -56,4 +59,16 @@ export class DialogueGraph {
 export enum DialogueType {
     Message,
     Option
+}
+
+export class EdgeStatistics {
+    creativity: number;
+    knowledge: number;
+    skill: number;
+
+    constructor(creativity: number = 1, knowledge: number = 1, skill: number = 1) {
+        this.creativity = creativity;
+        this.knowledge = knowledge;
+        this.skill = skill;
+    }
 }
