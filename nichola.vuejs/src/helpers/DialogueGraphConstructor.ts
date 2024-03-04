@@ -1,4 +1,4 @@
-import {DialogueGraph, DialogueType} from '@/models/DialogueGraph'
+import {DialogueGraph, DialogueType, EdgeStatistics} from '@/models/DialogueGraph'
 
 export class DialogueGraphConstructor {
     private _dialogueGraph = new DialogueGraph();
@@ -23,23 +23,23 @@ export class DialogueGraphConstructor {
         this.dialogueGraph.addDialogueNode('Your mom', DialogueType.Option);
         this.dialogueGraph.addDialogueNode('Huh?');
 
-        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[0], this.dialogueGraph.nodes[1]);
-        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[1], this.dialogueGraph.nodes[2]);
-        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[1], this.dialogueGraph.nodes[3]);
-        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[1], this.dialogueGraph.nodes[4]);
-        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[2], this.dialogueGraph.nodes[6]);
-        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[3], this.dialogueGraph.nodes[5]);
-        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[4], this.dialogueGraph.nodes[5]);
-        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[6], this.dialogueGraph.nodes[7]);
-        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[7], this.dialogueGraph.nodes[8]);
-        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[8], this.dialogueGraph.nodes[9]);
-        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[9], this.dialogueGraph.nodes[10]);
-        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[9], this.dialogueGraph.nodes[2]);
-        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[10], this.dialogueGraph.nodes[6]);
-        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[11], this.dialogueGraph.nodes[0]);
-        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[9], this.dialogueGraph.nodes[12]);
-        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[12], this.dialogueGraph.nodes[13]);
-        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[13], this.dialogueGraph.nodes[11]);
+        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[0], this.dialogueGraph.nodes[1], new EdgeStatistics());
+        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[1], this.dialogueGraph.nodes[2], new EdgeStatistics());
+        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[1], this.dialogueGraph.nodes[3], new EdgeStatistics());
+        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[1], this.dialogueGraph.nodes[4], new EdgeStatistics());
+        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[2], this.dialogueGraph.nodes[6], new EdgeStatistics());
+        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[3], this.dialogueGraph.nodes[5], new EdgeStatistics());
+        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[4], this.dialogueGraph.nodes[5], new EdgeStatistics());
+        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[6], this.dialogueGraph.nodes[7], new EdgeStatistics());
+        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[7], this.dialogueGraph.nodes[8], new EdgeStatistics());
+        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[8], this.dialogueGraph.nodes[9], new EdgeStatistics());
+        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[9], this.dialogueGraph.nodes[10], new EdgeStatistics());
+        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[9], this.dialogueGraph.nodes[2], new EdgeStatistics());
+        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[10], this.dialogueGraph.nodes[6], new EdgeStatistics());
+        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[11], this.dialogueGraph.nodes[0], new EdgeStatistics());
+        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[9], this.dialogueGraph.nodes[12], new EdgeStatistics());
+        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[12], this.dialogueGraph.nodes[13], new EdgeStatistics());
+        this.dialogueGraph.addEdge(this.dialogueGraph.nodes[13], this.dialogueGraph.nodes[11], new EdgeStatistics());
 
         this.dialogueGraph.setCurrentNode(this.dialogueGraph.nodes[0]);
     }

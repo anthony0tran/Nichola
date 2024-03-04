@@ -2,7 +2,7 @@
 import { ref, computed } from 'vue';
 import DialogueOptionComponent from './DialogueOptionComponent.vue';
 import { DialogueGraphConstructor } from '@/helpers/DialogueGraphConstructor';
-import { DialogueNode } from '@/models/DialogueGraph'
+import { DialogueNode, EdgeStatistics } from '@/models/DialogueGraph'
 
 const dialogues = new DialogueGraphConstructor();
 dialogues.constructDialogue();
@@ -35,10 +35,15 @@ function continueDialogue(node: DialogueNode | null) {
 
     let nextDialogue = node.getNextDialogue();
     if (nextDialogue != null) {
-        dialogue.value = nextDialogue;
-        options.value = nextDialogue.getOptions()
-        textOutPutShouldBeClickable = computed(() => nextDialogue!.getNextDialogue() != null);
+        dialogue.value = nextDialogue.node;
+        emitStatsChanged(nextDialogue.stats)
+        options.value = nextDialogue.node.getOptions()
+        textOutPutShouldBeClickable = computed(() => nextDialogue!.node.getNextDialogue() != null);
     }
+}
+
+function emitStatsChanged(stats: EdgeStatistics) {
+    window.dispatchEvent(new CustomEvent('stats-changed', { detail: stats }))
 }
 
 </script>
@@ -46,7 +51,8 @@ function continueDialogue(node: DialogueNode | null) {
 <template>
     <div class="flex-container">
         <main id="dialogueContainer">
-            <DialogueOptionComponent v-for="option in options" :optionPrompt="option" @click="continueDialogue(option)" />
+            <DialogueOptionComponent v-for="option in options" :optionPrompt="option"
+                @click="continueDialogue(option)" />
             <div id="textOutputContainer" @click="continueDialogue(dialogue)"
                 :class="{ 'textOutputContainer-hover': textOutPutShouldBeClickable }">
                 {{ dialogue?.message }}
