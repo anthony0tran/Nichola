@@ -44,7 +44,7 @@ export class DialogueGraph {
         this.nodes.push(node);
     }
 
-    addEdge(source: DialogueNode, destination: DialogueNode, weight: number = 0) {
+    addEdge(source: DialogueNode, destination: DialogueNode, weight: number = 1) {
         source.addNeighbor(destination, weight);
     }
 
